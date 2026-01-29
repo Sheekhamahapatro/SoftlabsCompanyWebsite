@@ -1,26 +1,211 @@
 @import "tailwindcss";
 
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
+  --foreground: #ffffff;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --header-bg: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(67, 24, 255, 0.5));
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html{
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  
+  background-size: auto, auto, 1600px;
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-position: center top, right -120px top, center;
+  background-attachment: fixed;
+}
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradient-pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes hero-glow {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.95) translateY(0px);
+    filter: drop-shadow(0 0 30px rgba(124, 58, 237, 0.35));
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.08) translateY(-18px);
+    filter: drop-shadow(0 0 60px rgba(168, 85, 247, 0.5));
+  }
+  100% {
+    opacity: 0.55;
+    transform: scale(0.95) translateY(0px);
+    filter: drop-shadow(0 0 30px rgba(124, 58, 237, 0.35));
+  }
+}
+
+@keyframes hero-pan {
+  0% {
+    transform: scale(1.05) translate3d(-4%, -3%, 0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.12) translate3d(5%, 4%, 0);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.08) translate3d(-3%, 2%, 0);
+    opacity: 0.3;
+  }
+}
+
+@keyframes hero-enter-next {
+  from {
+    transform: translateX(6rem) scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes hero-exit-next {
+  from {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-6rem) scale(0.98);
+    opacity: 0;
+  }
+}
+
+@keyframes hero-enter-prev {
+  from {
+    transform: translateX(-6rem) scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes hero-exit-prev {
+  from {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(6rem) scale(0.98);
+    opacity: 0;
+  }
+}
+
+@keyframes hero-content-enter-next {
+  from {
+    transform: translateX(3rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes hero-content-enter-prev {
+  from {
+    transform: translateX(-3rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes brand-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-brand-marquee {
+  animation: brand-marquee 30s linear infinite;
+}
+
+@layer utilities {
+  .bg-gradient-text {
+    background-size: 200% 200%;
+  }
+
+  .animate-gradient-pan {
+    animation: gradient-pan 8s ease-in-out infinite;
+  }
+
+  .animate-hero-glow {
+    animation: hero-glow 20s ease-in-out infinite;
+  }
+
+  .animate-hero-pan {
+    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.35), transparent 55%),
+      radial-gradient(circle at 80% 30%, rgba(147, 51, 234, 0.25), transparent 65%),
+      radial-gradient(circle at 50% 80%, rgba(14, 165, 233, 0.25), transparent 55%);
+    mix-blend-mode: screen;
+    opacity: 0.35;
+    animation: hero-pan 28s ease-in-out infinite alternate;
+  }
+
+ .animate-hero-enter-next {
+    animation: hero-enter-next 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-hero-exit-next {
+    animation: hero-exit-next 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-hero-enter-prev {
+    animation: hero-enter-prev 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-hero-exit-prev {
+    animation: hero-exit-prev 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-hero-content-next {
+    animation: hero-content-enter-next 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-hero-content-prev {
+    animation: hero-content-enter-prev 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-brand-marquee {
+    animation: brand-marquee 28s linear infinite;
+  }
 }

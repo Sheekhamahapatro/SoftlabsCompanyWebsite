@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import PageTransition from "../components/PageTransition";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,15 +21,40 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className="bg-amber-50 text-black">
+
+        {/* HEADER (UNCHANGED) */}
+        <header
+  className=" sticky top-0 z-50 flex items-center justify-between px-10 py-3 rounded-b-md bg-white/30 backdrop-blur-xl border-b border-white/10 shadow-md text-black text-xl ">
+          <img src="/LOGO.png" alt="SoftLabs Infotech" className="h-12 w-35" />
+
+          <nav className="hidden gap-8 text-sm md:flex">
+            <a href="/" className="font-bold hover:text-indigo-600">Home</a>
+            <a href="/about" className="font-bold hover:text-indigo-600">About</a>
+            <a href="/services" className="font-bold hover:text-indigo-600">Services</a>
+            <a href="/value-proposition" className="font-bold hover:text-indigo-600">Value Proposition</a>
+            <a href="/lets-grow-together" className="font-bold hover:text-indigo-600">Let’s Grow Together</a>
+          </nav>
+
+          <a
+            href="/contact"
+            className="rounded-lg bg-violet-700 px-5 py-2 text-sm text-white hover:bg-violet-900"
+          >
+            Contact Us
+          </a>
+        </header>
+
+        {/* ✅ PAGE TRANSITION CLIENT WRAPPER */}
+        <PageTransition>
+          {children}
+        </PageTransition>
+
+      <Footer />
       </body>
     </html>
   );
