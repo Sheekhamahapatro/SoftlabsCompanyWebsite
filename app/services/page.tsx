@@ -50,15 +50,15 @@ export default function ServicesPage() {
     <main className="bg-white">
 
       {/* ================= HERO ================= */}
-      <section className="py-28 bg-slate-50">
+      <section className="py-16 bg-slate-50 sm:py-24 md:py-28">
         
-        <div className="mx-auto max-w-7xl px-6 text-center">
+        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6">
            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.12),transparent_60%)]" />
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl font-extrabold text-gray-900 md:text-5xl"
+            className="text-3xl font-extrabold text-gray-900 sm:text-4xl md:text-5xl"
           >
             Our <span className="text-violet-700">Services</span>
           </motion.h1>
@@ -76,19 +76,19 @@ export default function ServicesPage() {
       </section>
 
       {/* ================= SERVICES ================= */}
-      <section className="py-24">
-        <div className="mx-auto max-w-7xl px-6 grid gap-16">
+      <section className="py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 grid gap-12 sm:px-6 sm:gap-16">
 
           {/* Cybersecurity */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="grid gap-12 md:grid-cols-2 items-center"
+         <motion.div
+           initial={{ opacity: 0, y: 40 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.6 }}
+           viewport={{ once: true, amount: 0.2 }}  // 👈 ADD THIS
+           className="grid gap-12 md:grid-cols-2 items-center"
           >
             <div>
-              <h2 className="text-3xl font-bold text-gray-900">
+              <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
                 Cybersecurity
               </h2>
 
@@ -111,7 +111,7 @@ export default function ServicesPage() {
               alt="Cybersecurity"
               width={520}
               height={380}
-              className="rounded-xl"
+              className="w-full rounded-xl"
             />
           </motion.div>
 
@@ -128,11 +128,11 @@ export default function ServicesPage() {
               alt="Surveillance"
               width={520}
               height={380}
-              className="rounded-xl md:order-2"
+              className="w-full rounded-xl md:order-2"
             />
 
             <div>
-              <h2 className="text-3xl font-bold text-gray-900">
+              <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
                 Surveillance
               </h2>
 
@@ -157,12 +157,12 @@ export default function ServicesPage() {
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6 }}
     viewport={{ once: true }}
-    className="text-center text-3xl font-bold text-gray-900"
+    className="text-center text-2xl font-bold text-gray-900 sm:text-3xl"
   >
     Infrastructure & Platform Services
   </motion.h2>
 
-  <div className="mt-16 grid gap-8 md:grid-cols-2">
+  <div className="mt-10 grid gap-6 sm:mt-16 sm:gap-8 md:grid-cols-2">
     {infrastructureServices.map((service, i) => (
       <motion.div
         key={service.title}
@@ -170,7 +170,7 @@ export default function ServicesPage() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: i * 0.08 }}
         viewport={{ once: true }}
-        className="rounded-xl border border-gray-200 p-8 hover:shadow-lg transition"
+        className="rounded-xl border border-gray-200 p-6 hover:shadow-lg transition sm:p-8"
       >
         <h3 className="text-xl font-semibold text-gray-900">
           {service.title}

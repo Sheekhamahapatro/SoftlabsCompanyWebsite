@@ -167,22 +167,22 @@ export default function Hero() {
                   style={{ backgroundImage: slide.background.value }}
                 />
               )}
-              <div className="absolute inset-0 bg-linear-to-br from-slates-950/40 via-slate-950/60 to-slate-950/80" />
+              <div className="absolute inset-0 bg-linear-to-br from-white/75 via-white/60 to-white/85" />
             </div>
           );
         })}
         
       </div>
-      {/* Carousel controls */}
+      {/* Carousel controls - smaller on mobile */}
       <button
         type="button"
         aria-label="Previous slide"
         onClick={() => handleSelectSlide(activeIndex - 1)}
-        className="group absolute left-6 top-1/2 z-20 -translate-y-1/2 rounded-full border border-white/30 bg-slate-900/40 p-4 text-white shadow-xl backdrop-blur transition hover:border-white/60 hover:bg-white/10"
+        className="group absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-slate-300 bg-white/80 p-2.5 text-slate-700 shadow-xl backdrop-blur transition hover:border-slate-400 hover:bg-white sm:left-4 sm:p-3 md:left-6 md:p-4"
       >
         <svg
           aria-hidden
-          className="h-5 w-5 transition group-hover:-translate-x-0.5"
+          className="h-4 w-4 transition group-hover:-translate-x-0.5 sm:h-5 sm:w-5"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -195,11 +195,11 @@ export default function Hero() {
         type="button"
         aria-label="Next slide"
         onClick={() => handleSelectSlide(activeIndex + 1)}
-        className="group absolute right-6 top-1/2 z-20 -translate-y-1/2 rounded-full border border-white/30 bg-slate-900/40 p-4 text-white shadow-xl backdrop-blur transition hover:border-white/60 hover:bg-white/10"
+        className="group absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-slate-300 bg-white/80 p-2.5 text-slate-700 shadow-xl backdrop-blur transition hover:border-slate-400 hover:bg-white sm:right-4 sm:p-3 md:right-6 md:p-4"
       >
         <svg
           aria-hidden
-          className="h-5 w-5 transition group-hover:translate-x-0.5"
+          className="h-4 w-4 transition group-hover:translate-x-0.5 sm:h-5 sm:w-5"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -210,18 +210,18 @@ export default function Hero() {
       </button>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-5xl px-6 pt-32 pb-40 text-center text-white">
+      <div className="relative z-10 mx-auto max-w-5xl px-4 pt-24 pb-20 text-center text-slate-800 sm:px-6 sm:pt-32 sm:pb-32 md:pb-40">
         <div
           key={`${activeSlide.id}-${direction}`}
           className={`w-full animate-hero-content-${direction}`}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.6em] text-white/70">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.4em] text-slate-600 sm:text-xs sm:tracking-[0.5em] md:tracking-[0.6em]">
             {activeSlide.eyebrow}
           </p>
 
-          <h1 className="mt-6 text-4xl font-extrabold leading-tight lg:text-6xl">
+          <h1 className="mt-4 text-2xl font-extrabold leading-tight text-slate-900 sm:mt-6 sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
             {activeSlide.preTitle}{" "}
-            <span className="bg-linear-to-r from-[#4318ff] via-[#a855f7] to-[#f5f3ff] bg-size-[200%_200%] bg-clip-text text-transparent">
+            <span className="text-violet-700">
               {activeSlide.highlight}
             </span>
             {activeSlide.postTitle && (
@@ -232,29 +232,29 @@ export default function Hero() {
             )}
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/80">
+          <p className="mx-auto mt-4 max-w-2xl text-base text-slate-700 sm:mt-6 sm:text-lg">
             {activeSlide.description}
           </p>
 
-          <div className="mt-12 flex justify-center gap-6">
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:mt-12 sm:flex-row sm:gap-6">
             <a
               href={activeSlide.primaryCta.href}
-              className="rounded-2xl bg-purple-600 px-10 py-4 text-lg font-semibold hover:bg-purple-500"
+              className="w-full rounded-2xl bg-violet-600 px-8 py-3.5 text-base font-semibold text-white hover:bg-violet-700 sm:w-auto sm:px-10 sm:py-4 sm:text-lg"
             >
               {activeSlide.primaryCta.label}
             </a>
             <a
               href={activeSlide.secondaryCta.href}
-              className="rounded-2xl border border-white/40 px-10 py-4 text-lg hover:bg-white/10"
+              className="w-full rounded-2xl border-2 border-slate-700 px-8 py-3.5 text-base font-medium text-slate-800 hover:bg-slate-100 sm:w-auto sm:px-10 sm:py-4 sm:text-lg"
             >
               {activeSlide.secondaryCta.label}
             </a>
           </div>
 
           {/* Progress */}
-          <div className="mt-14 mx-auto h-1 w-32 rounded-full bg-white/20">
+          <div className="mt-10 mx-auto h-1 w-28 rounded-full bg-slate-300 sm:mt-14 sm:w-32">
             <div
-              className="h-full origin-left bg-white"
+              className="h-full origin-left rounded-full bg-violet-600"
               style={{ transform: `scaleX(${progress})` }}
             />
           </div>

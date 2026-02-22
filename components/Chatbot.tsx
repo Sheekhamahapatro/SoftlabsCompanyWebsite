@@ -1,108 +1,197 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { MessageCircle, X, Send, Loader2 } from "lucide-react";
+
+type Message = {
+  id: string;
+  role: "user" | "bot";
+  text: string;
+  timestamp: Date;
+};
+
+const INITIAL_MESSAGE: Message = {
+  id: "welcome",
+  role: "bot",
+  text: "Hi! I'm Softlabs AI assistant. Ask me about our IT services, cybersecurity, infrastructure, or support. How can I help you?",
+  timestamp: new Date(),
+};
 
 export default function Chatbot() {
-  const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { role: "bot", text: "Hi 👋 I'm Softlabs AI. How can I help you today?" },
-  ]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([INITIAL_MESSAGE]);
   const [input, setInput] = useState("");
-  const [isSending, setIsSending] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  useEffect(() => {
+    if (isOpen) {
+      inputRef.current?.focus();
+    }
+  }, [isOpen]);
 
   const sendMessage = async () => {
-    if (!input.trim() || isSending) return;
+    const text = input.trim();
+    if (!text || isLoading) return;
 
-    const userMessage = { role: "user", text: input };
-    setMessages((m) => [...m, userMessage]);
+    const userMsg: Message = {
+      id: `u-${Date.now()}`,
+      role: "user",
+      text,
+      timestamp: new Date(),
+    };
+    setMessages((prev) => [...prev, userMsg]);
     setInput("");
-    setIsSending(true);
+    setIsLoading(true);
     setError(null);
 
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: input }),
+        body: JSON.stringify({ message: text }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data?.reply || "AI is temporarily unavailable. Please try again soon.");
-        setMessages((m) => [
-          ...m,
+        const errText = data?.reply || "Sorry, something went wrong. Please try again.";
+        setError(errText);
+        setMessages((prev) => [
+          ...prev,
           {
+            id: `b-${Date.now()}`,
             role: "bot",
-            text: data?.reply || "Sorry, something went wrong. Please try again.",
+            text: errText,
+            timestamp: new Date(),
           },
         ]);
         return;
       }
 
-      setMessages((m) => [...m, { role: "bot", text: data.reply }]);
-    } catch (err) {
-      setError("Network error. Please try again.");
-      setMessages((m) => [
-        ...m,
-        { role: "bot", text: "Sorry, something went wrong. Please try again." },
+      const botMsg: Message = {
+        id: `b-${Date.now()}`,
+        role: "bot",
+        text: data.reply || "I couldn't generate a response.",
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, botMsg]);
+    } catch {
+      setError("Network error. Please check your connection.");
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: `b-${Date.now()}`,
+          role: "bot",
+          text: "Sorry, I couldn't connect. Please try again.",
+          timestamp: new Date(),
+        },
       ]);
     } finally {
-      setIsSending(false);
+      setIsLoading(false);
     }
   };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+
   return (
     <>
-      {/* Floating Button */}
+      {/* Toggle button */}
       <button
-        onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 rounded-full bg-indigo-600 p-4 text-white shadow-lg hover:bg-indigo-500"
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed bottom-6 right-6 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl active:scale-95"
+        aria-label={isOpen ? "Close chat" : "Open chat"}
       >
-        💬
+        {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
       </button>
 
-      {/* Chat Window */}
-      {open && (
-        <div className="fixed bottom-20 right-6 z-50 w-80 rounded-2xl bg-white shadow-xl border border-slate-200 flex flex-col">
-          <div className="bg-indigo-600 text-white p-4 rounded-t-2xl font-semibold">
-            Ask Softlabs AI
+      {/* Chat panel */}
+      {isOpen && (
+        <div className="fixed bottom-24 right-6 z-[59] flex w-[360px] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl sm:bottom-28 sm:w-96">
+          {/* Header */}
+          <div className="flex items-center gap-3 bg-gradient-to-r from-violet-600 to-indigo-600 px-5 py-4">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
+              <MessageCircle size={22} className="text-white" />
+            </div>
+            <div>
+              <h3 className="font-semibold text-white">Softlabs AI</h3>
+              <p className="text-xs text-white/80">Powered by ChatGPT</p>
+            </div>
           </div>
 
-          <div className="flex-1 p-4 space-y-3 overflow-y-auto max-h-80">
-            {messages.map((msg, i) => (
+          {/* Messages */}
+          <div className="flex max-h-[320px] flex-1 flex-col gap-4 overflow-y-auto p-4">
+            {messages.map((msg) => (
               <div
-                key={i}
-                className={`text-sm p-2 rounded-lg ${
-                  msg.role === "user"
-                    ? "bg-indigo-100 text-right"
-                    : "bg-slate-100"
-                }`}
+                key={msg.id}
+                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
-                {msg.text}
+                <div
+                  className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm ${
+                    msg.role === "user"
+                      ? "bg-violet-600 text-white"
+                      : "bg-slate-100 text-slate-800"
+                  }`}
+                >
+                  <p className="whitespace-pre-wrap break-words">{msg.text}</p>
+                </div>
               </div>
             ))}
+            {isLoading && (
+              <div className="flex justify-start">
+                <div className="flex items-center gap-2 rounded-2xl bg-slate-100 px-4 py-3">
+                  <Loader2 size={18} className="animate-spin text-violet-600" />
+                  <span className="text-sm text-slate-600">Thinking...</span>
+                </div>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
           </div>
 
-          <div className="p-3 border-t flex gap-2">
-  <input
-    type="text"
-    value={input}
-    onChange={(e) => setInput(e.target.value)}
-    placeholder="Type your message..."
-    className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-black outline-none focus:ring-2 focus:ring-purple-500"
-  />
-  <button
-    onClick={sendMessage}
-    disabled={isSending}
-    className="rounded-lg bg-purple-600 px-4 py-2 text-white hover:bg-purple-700 disabled:opacity-60 disabled:cursor-not-allowed"
-  >
-    {isSending ? "Sending..." : "Send"}
-  </button>
-</div>
+          {/* Error toast */}
           {error && (
-            <div className="px-4 pb-3 text-xs text-red-600">{error}</div>
+            <div className="mx-4 mb-2 rounded-lg bg-red-50 px-3 py-2 text-xs text-red-600">
+              {error}
+            </div>
           )}
+
+          {/* Input area */}
+          <div className="border-t border-slate-100 p-4">
+            <div className="flex gap-2">
+              <textarea
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Type your message..."
+                rows={1}
+                disabled={isLoading}
+                className="min-h-[44px] max-h-32 flex-1 resize-none rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-200 disabled:bg-slate-50"
+              />
+              <button
+                onClick={sendMessage}
+                disabled={!input.trim() || isLoading}
+                className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white transition hover:from-violet-700 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <Send size={20} />
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </>

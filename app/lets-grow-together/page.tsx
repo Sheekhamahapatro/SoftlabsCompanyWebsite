@@ -8,13 +8,13 @@ export default function LetsGrowTogetherPage() {
     <main className="bg-white text-slate-800">
 
       {/* ================= HERO ================= */}
-      <section className="relative overflow-hidden py-28 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-        <div className="mx-auto max-w-5xl px-6 text-center">
+      <section className="relative overflow-hidden py-16 bg-gradient-to-br from-indigo-50 via-white to-purple-50 sm:py-24 md:py-28">
+        <div className="mx-auto max-w-5xl px-4 text-center sm:px-6">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl font-bold md:text-6xl"
+            className="text-3xl font-bold sm:text-4xl md:text-6xl"
           >
             Let’s Grow Together
           </motion.h1>
@@ -22,12 +22,12 @@ export default function LetsGrowTogetherPage() {
       </section>
 
       {/* ================= MAIN CONTENT ================= */}
-      <section className="py-20">
-        <div className="mx-auto max-w-6xl px-6 grid md:grid-cols-2 gap-16 items-center">
+      <section className="py-12 sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 grid gap-10 sm:px-6 md:grid-cols-2 md:gap-16 md:items-center">
 
           {/* TEXT CONTENT */}
           <div>
-            <h2 className="text-3xl font-semibold mb-6">
+            <h2 className="text-2xl font-semibold mb-4 sm:text-3xl sm:mb-6">
               A GREAT PLACE FOR INSPIRATION AND INNOVATION
             </h2>
 
@@ -60,7 +60,7 @@ export default function LetsGrowTogetherPage() {
           </div>
 
           {/* IMAGE */}
-          <div className="relative h-[400px] w-full">
+          <div className="relative h-[280px] w-full sm:h-[350px] md:h-[400px]">
             <Image
               src="/grow.jpeg"
               alt="Employee care and workplace wellbeing illustration"
@@ -73,8 +73,8 @@ export default function LetsGrowTogetherPage() {
       </section>
 
       {/* ================= ILLUSTRATION CAPTION ================= */}
-      <section className="pb-20">
-        <div className="mx-auto max-w-4xl px-6 text-center">
+      <section className="pb-12 sm:pb-20">
+        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
           <p className="text-sm text-slate-500">
             Giant hands holding tiny office workers — a concept of employee care,
             wellbeing at work, workplace perks and benefits, and support for

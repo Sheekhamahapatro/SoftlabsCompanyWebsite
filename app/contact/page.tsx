@@ -22,19 +22,19 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="bg-slate-50 min-h-screen py-20">
-      <div className="mx-auto max-w-4xl px-6">
+    <main className="bg-slate-50 min-h-screen py-12 sm:py-16 md:py-20">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6">
         
         {/* Heading */}
-        <h1 className="text-4xl font-bold text-center text-slate-800">
+        <h1 className="text-3xl font-bold text-center text-slate-800 sm:text-4xl">
           Contact Us
         </h1>
-        <p className="text-center text-slate-600 mt-4">
+        <p className="text-center text-slate-600 mt-3 text-sm sm:mt-4 sm:text-base">
           Tell us about your requirements and our experts will reach out to you.
         </p>
 
         {/* Form Card */}
-        <div className="mt-12 bg-white shadow-lg rounded-2xl p-8 md:p-12">
+        <div className="mt-8 bg-white shadow-lg rounded-2xl p-6 sm:mt-12 sm:p-8 md:p-12">
           <form onSubmit={handleSubmit} className="space-y-6">
 
             {/* Name */}

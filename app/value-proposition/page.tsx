@@ -15,20 +15,20 @@ export default function ValuePropositionPage() {
     <main className="bg-white text-slate-900">
 
       {/* ================= HERO ================= */}
-      <section className="relative overflow-hidden py-28">
+      <section className="relative overflow-hidden py-16 sm:py-24 md:py-28">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.12),transparent_60%)]" />
 
-        <div className="relative mx-auto max-w-6xl px-6 text-center">
+        <div className="relative mx-auto max-w-6xl px-4 text-center sm:px-6">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-4xl font-bold leading-tight md:text-6xl"
+            className="text-2xl font-bold leading-tight sm:text-3xl md:text-4xl lg:text-6xl"
           >
             Secure. Scalable. Future-Ready.
           </motion.h1>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-600">
+          <p className="mx-auto mt-4 max-w-3xl text-sm text-slate-600 sm:mt-6 sm:text-base md:text-lg">
             We empower enterprises with resilient IT infrastructure, advanced
             cybersecurity, and intelligent technology solutions that keep your
             business protected and always ahead.
@@ -37,13 +37,13 @@ export default function ValuePropositionPage() {
       </section>
 
       {/* ================= CORE VALUE GRID ================= */}
-      <section className="py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-center text-3xl font-bold mb-14">
+      <section className="py-12 sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <h2 className="text-center text-2xl font-bold mb-8 sm:text-3xl sm:mb-14">
             Why Organizations Trust Us
           </h2>
 
-          <div className="grid gap-10 md:grid-cols-3">
+          <div className="grid gap-8 sm:gap-10 md:grid-cols-3">
             {valuePoints.map((item, i) => (
               <motion.div
                 key={item.title}
@@ -63,8 +63,8 @@ export default function ValuePropositionPage() {
       </section>
 
       {/* ================= STATS SECTION ================= */}
-      <section className="bg-slate-50 py-20 border-y border-slate-200">
-        <div className="mx-auto max-w-6xl px-6 grid gap-10 text-center md:grid-cols-4">
+      <section className="bg-slate-50 py-12 border-y border-slate-200 sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 grid gap-8 text-center sm:px-6 sm:gap-10 md:grid-cols-4">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -81,9 +81,9 @@ export default function ValuePropositionPage() {
       </section>
 
       {/* ================= ENTERPRISE MESSAGE ================= */}
-      <section className="py-24">
-        <div className="mx-auto max-w-5xl px-6 text-center">
-          <h2 className="text-3xl font-bold">
+      <section className="py-16 sm:py-24">
+        <div className="mx-auto max-w-5xl px-4 text-center sm:px-6">
+          <h2 className="text-2xl font-bold sm:text-3xl">
             Enterprise-Grade Technology, Delivered with Precision
           </h2>
           <p className="mt-6 text-slate-600">
@@ -96,8 +96,8 @@ export default function ValuePropositionPage() {
       </section>
 
       {/* ================= CTA ================= */}
-      <section className="pb-28">
-        <div className="mx-auto max-w-4xl rounded-3xl border border-indigo-200 bg-indigo-50/60 p-12 text-center backdrop-blur-sm">
+      <section className="pb-16 sm:pb-28">
+        <div className="mx-auto max-w-4xl rounded-2xl border border-indigo-200 bg-indigo-50/60 p-6 text-center backdrop-blur-sm sm:rounded-3xl sm:p-12">
           <h3 className="text-2xl font-bold text-slate-900">
             Let’s Build a Secure Digital Future Together
           </h3>

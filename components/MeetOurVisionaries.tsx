@@ -40,21 +40,21 @@ export default function MeetOurVisionaries() {
   return (
     <section
       id="visionaries"
-      className="bg-white py-20 px-6"
+      className="bg-white py-12 px-4 sm:py-20 sm:px-6"
     >
       <div className="mx-auto max-w-6xl">
         
         {/* Title */}
-        <h1 className="text-center font-semibold tracking-widest bg-linear-to-b from-zinc-300 via-violet-500 to-violet-800 bg-clip-text text-transparent text-5xl">
+        <h1 className="text-center text-2xl font-semibold tracking-wide bg-linear-to-b from-zinc-300 via-violet-500 to-violet-800 bg-clip-text text-transparent sm:text-3xl md:text-5xl md:tracking-widest">
           MEET OUR VISIONARIES
         </h1>
 
         {/* Content */}
-        <div className="mt-16 grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 items-center gap-8 sm:mt-16 sm:gap-12 md:grid-cols-2">
 
           {/* Image */}
           <div className="flex justify-center">
-            <div className="h-72 w-72 bg-gray-200 md:h-80 md:w-80">
+            <div className="h-56 w-56 bg-gray-200 sm:h-72 sm:w-72 md:h-80 md:w-80">
               <img
                 src={leader.image}
                 alt={leader.name}
@@ -65,7 +65,7 @@ export default function MeetOurVisionaries() {
 
           {/* Text */}
           <div>
-            <h3 className="text-2xl font-bold text-black">
+            <h3 className="text-xl font-bold text-black sm:text-2xl">
               {leader.name}
             </h3>
             <p className="mt-1 text-sm font-semibold text-gray-600">
@@ -103,7 +103,7 @@ export default function MeetOurVisionaries() {
         </div>
 
         {/* Navigation */}
-        <div className="mt-12 flex justify-end gap-4">
+        <div className="mt-8 flex justify-end gap-4 sm:mt-12">
           <button
             onClick={prev}
             className="flex h-10 w-10 items-center justify-center rounded-full border border-black  bg-black hover:bg-grey hover:text-white transition"

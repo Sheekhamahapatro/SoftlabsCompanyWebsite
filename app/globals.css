@@ -16,7 +16,7 @@ html{
 }
 
 body {
-  background-color: var(--background);
+  background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   
@@ -157,8 +157,24 @@ body {
   }
 }
 
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
 .animate-brand-marquee {
   animation: brand-marquee 30s linear infinite;
+}
+
+.animate-loading-bar {
+  animation: loading-bar 1.5s ease-in-out infinite;
 }
 
 @layer utilities {
@@ -208,4 +224,16 @@ body {
   .animate-brand-marquee {
     animation: brand-marquee 28s linear infinite;
   }
+}
+nav a span {
+  transform-origin: left;
+}
+
+/* Soft hover glow */
+nav a:hover {
+  text-shadow: 0 0 8px rgba(124, 58, 237, 0.4);
+}
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
 }

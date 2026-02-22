@@ -9,16 +9,16 @@ export default function QueryModal({ open, onClose }: Props) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
       
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm"
         onClick={onClose}
       />
 
       {/* Modal */}
-      <div className="relative w-full max-w-md rounded-2xl bg-white p-8 shadow-xl">
+      <div className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-xl sm:p-8 my-auto">
         <button
           onClick={onClose}
           className="absolute right-4 top-4 text-gray-400 hover:text-black"

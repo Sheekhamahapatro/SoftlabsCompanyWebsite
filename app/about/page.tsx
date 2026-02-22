@@ -8,8 +8,8 @@ export default function AboutPage() {
     <main className="bg-white">
 
       {/* ================= HERO ================= */}
-      <section className="relative overflow-hidden py-28">
-        <div className="mx-auto max-w-7xl px-6 grid grid-cols-1 gap-16 md:grid-cols-2 items-center">
+      <section className="relative overflow-hidden py-16 sm:py-24 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 grid grid-cols-1 gap-10 sm:px-6 sm:gap-16 md:grid-cols-2 md:items-center">
 
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -17,7 +17,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h1 className="text-4xl font-extrabold text-gray-900 lg:text-5xl">
+            <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl lg:text-5xl">
               About <span className="text-violet-700">Softlabs</span>
             </h1>
 
@@ -50,8 +50,8 @@ export default function AboutPage() {
       </section>
 
       {/* ================= MISSION ================= */}
-      <section className="bg-slate-50 py-24">
-        <div className="mx-auto max-w-6xl px-6 text-center">
+      <section className="bg-slate-50 py-16 sm:py-24">
+        <div className="mx-auto max-w-6xl px-4 text-center sm:px-6">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -76,8 +76,8 @@ export default function AboutPage() {
       </section>
 
       {/* ================= VALUES ================= */}
-      <section className="py-24">
-        <div className="mx-auto max-w-7xl px-6 grid gap-10 md:grid-cols-3">
+      <section className="py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 grid gap-8 sm:px-6 sm:gap-10 md:grid-cols-3">
           {values.map((v, i) => (
             <motion.div
               key={v.title}
@@ -95,8 +95,8 @@ export default function AboutPage() {
       </section>
 
       {/* ================= LEADER ================= */}
-      <section className="py-24 bg-white">
-        <div className="mx-auto max-w-6xl px-6 grid gap-16 md:grid-cols-2 items-center">
+      <section className="py-16 bg-white sm:py-24">
+        <div className="mx-auto max-w-6xl px-4 grid gap-10 sm:px-6 sm:gap-16 md:grid-cols-2 md:items-center">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -108,7 +108,7 @@ export default function AboutPage() {
               alt="Leader"
               width={420}
               height={420}
-              className="rounded-xl"
+              className="w-full rounded-xl"
             />
           </motion.div>
 
@@ -134,13 +134,13 @@ export default function AboutPage() {
       </section>
 
       {/* ================= VISIONARIES ================= */}
-      <section className="bg-slate-50 py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <h2 className="text-center text-3xl font-bold text-gray-900">
+      <section className="bg-slate-50 py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <h2 className="text-center text-2xl font-bold text-gray-900 sm:text-3xl">
             Meet Our Visionaries
           </h2>
 
-          <div className="mt-16 grid gap-10 md:grid-cols-3">
+          <div className="mt-10 grid gap-8 sm:mt-16 sm:gap-10 md:grid-cols-3">
             {visionaries.map((v, i) => (
               <motion.div
                 key={v.name}
@@ -167,9 +167,9 @@ export default function AboutPage() {
       </section>
 
       {/* ================= TEAM ================= */}
-      <section className="py-24 bg-white">
-        <div className="mx-auto max-w-7xl px-6">
-          <h2 className="text-center text-3xl font-bold text-gray-900">
+      <section className="py-16 bg-white sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <h2 className="text-center text-2xl font-bold text-gray-900 sm:text-3xl">
             Our Team
           </h2>
 
@@ -177,7 +177,7 @@ export default function AboutPage() {
             Experts in cybersecurity, cloud, and digital transformation
           </p>
 
-          <div className="mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:mt-16 sm:grid-cols-2 sm:gap-8 md:grid-cols-4">
             {team.map((m, i) => (
               <motion.div
                 key={m.name}

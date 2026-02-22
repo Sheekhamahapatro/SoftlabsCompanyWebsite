@@ -22,12 +22,12 @@ export default function Footer() {
   };
 
   return (
-    <footer className="mt-auto bg-white px-6 py-7">
-      <div className="mx-auto max-w-7xl grid grid-cols-1 gap-12 md:grid-cols-4">
+    <footer className="mt-auto bg-white px-4 py-6 sm:px-6 sm:py-7">
+      <div className="mx-auto max-w-7xl grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-4">
 
         {/* Logo */}
         <div className="flex items-center">
-          <img src="/LOGO.png" alt="SoftLabs Infotech" className="h-20" />
+          <img src="/LOGO.png" alt="SoftLabs Infotech" className="h-14 sm:h-16 md:h-20 w-auto" />
         </div>
 
         {/* Contact */}
@@ -38,8 +38,8 @@ export default function Footer() {
 
           <ul className="mt-4 space-y-3 text-sm text-gray-600">
             <li className="flex gap-3">
-              <span>📍</span>
-              <span>
+              <span className="shrink-0">📍</span>
+              <span className="break-words">
                 303 Skyline Building, 85, Nehru Place, New Delhi,<br />
                 Delhi 110019
               </span>
@@ -115,7 +115,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom */}
-      <div className="mt-10 border-t border-gray-200 pt-6 text-center text-xs text-gray-500">
+      <div className="mt-8 border-t border-gray-200 pt-4 text-center text-xs text-gray-500 sm:mt-10 sm:pt-6">
         © {new Date().getFullYear()} Softlabs. All rights reserved.
       </div>
     </footer>
