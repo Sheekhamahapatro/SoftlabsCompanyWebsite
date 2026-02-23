@@ -22,6 +22,9 @@
 
 # misc
 .DS_Store
+
+# nested repo (avoid embedded repo warning)
+/Softlabs-Infotech-Website/
 *.pem
 
 # debug
