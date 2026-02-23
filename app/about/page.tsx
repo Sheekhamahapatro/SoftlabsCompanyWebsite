@@ -49,8 +49,9 @@ export default function AboutPage() {
         </div>
       </section>
 
+      
       {/* ================= MISSION ================= */}
-      <section className="bg-slate-50 py-16 sm:py-24">
+      <section className="bg-white py-10 sm:py-12">
         <div className="mx-auto max-w-6xl px-4 text-center sm:px-6">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -67,7 +68,7 @@ export default function AboutPage() {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
             viewport={{ once: true }}
-            className="mx-auto mt-6 max-w-3xl text-lg text-gray-600"
+            className="mx-auto mt-2 max-w-3xl text-lg text-gray-600"
           >
             To be the preferred partner for data protection, information security,
             and privacy by delivering high-value, cost-effective services.
@@ -76,8 +77,8 @@ export default function AboutPage() {
       </section>
 
       {/* ================= VALUES ================= */}
-      <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 grid gap-8 sm:px-6 sm:gap-10 md:grid-cols-3">
+      <section className="py-10 sm:py-14">
+        <div className="mx-auto max-w-7xl px-4 grid gap-6 sm:px-6 sm:gap-8 md:grid-cols-3">
           {values.map((v, i) => (
             <motion.div
               key={v.title}
@@ -94,53 +95,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ================= LEADER ================= */}
-      <section className="py-16 bg-white sm:py-24">
-        <div className="mx-auto max-w-6xl px-4 grid gap-10 sm:px-6 sm:gap-16 md:grid-cols-2 md:items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-          >
-            <Image
-              src="/leader.png"
-              alt="Leader"
-              width={420}
-              height={420}
-              className="w-full rounded-xl"
-            />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl font-bold text-gray-900">
-              Gopal Maheshwari
-            </h2>
-            <p className="mt-1 text-violet-700 font-semibold">
-              Director – Technology
-            </p>
-            <p className="mt-6 text-gray-600 leading-relaxed">
-              With 22+ years of experience in Networking & Cyber Security,
-              Gopal leads Softlabs’ technology vision across enterprise
-              and global markets.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
       {/* ================= VISIONARIES ================= */}
-      <section className="bg-slate-50 py-16 sm:py-24">
+      <section className="py-10 bg-slate-50 sm:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <h2 className="text-center text-2xl font-bold text-gray-900 sm:text-3xl">
             Meet Our Visionaries
           </h2>
 
-          <div className="mt-10 grid gap-8 sm:mt-16 sm:gap-10 md:grid-cols-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-6 sm:mt-12 sm:gap-8">
             {visionaries.map((v, i) => (
               <motion.div
                 key={v.name}
@@ -148,36 +110,41 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.15 }}
                 viewport={{ once: true }}
-                className="rounded-xl bg-white p-8 shadow-sm hover:shadow-lg transition"
+                whileHover={{ y: -12, scale: 1.03, transition: { duration: 0.25 } }}
+                className="group relative w-full max-w-[320px] shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg transition-all duration-300 hover:border-violet-300 hover:shadow-2xl sm:w-[320px]"
               >
-                <Image
-                  src={v.image}
-                  alt={v.name}
-                  width={120}
-                  height={120}
-                  className="rounded-full"
-                />
-                <h3 className="mt-4 font-semibold text-gray-900">{v.name}</h3>
-                <p className="text-sm text-violet-700">{v.role}</p>
-                <p className="mt-4 text-sm text-gray-600">{v.bio}</p>
+                {/* Square image - fills top of card */}
+                <div className="relative aspect-square w-full overflow-hidden bg-gray-100">
+                  <Image
+                    src={v.image}
+                    alt={v.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+                <div className="p-6 text-center">
+                  <h3 className="text-lg font-bold text-gray-900">{v.name}</h3>
+                  <p className="mt-1 text-sm font-medium text-violet-600">{v.role}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-gray-600">{v.bio}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
-
-      {/* ================= TEAM ================= */}
-      <section className="py-16 bg-white sm:py-24">
+{/* ================= OUR TEAM ================= */}
+<section id="our-team" className="bg-slate-50 py-10 sm:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <h2 className="text-center text-2xl font-bold text-gray-900 sm:text-3xl">
             Our Team
           </h2>
 
-          <p className="mt-4 text-center text-gray-600">
+          <p className="mt-4 max-w-2xl mx-auto text-center text-gray-600">
             Experts in cybersecurity, cloud, and digital transformation
           </p>
 
-          <div className="mt-10 grid gap-6 sm:mt-16 sm:grid-cols-2 sm:gap-8 md:grid-cols-4">
+          <div className="mt-8 flex flex-wrap justify-center gap-6 sm:mt-12 sm:gap-8">
             {team.map((m, i) => (
               <motion.div
                 key={m.name}
@@ -185,17 +152,30 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="rounded-xl border border-gray-200 p-6 text-center hover:shadow-md transition"
+                whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.25 } }}
+                className="group relative w-full max-w-[240px] shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md transition-all duration-300 hover:border-violet-300 hover:shadow-xl sm:w-[240px]"
               >
-                <Image
-                  src={m.image}
-                  alt={m.name}
-                  width={100}
-                  height={100}
-                  className="mx-auto rounded-full"
-                />
-                <h4 className="mt-4 font-semibold text-gray-900">{m.name}</h4>
-                <p className="text-sm text-gray-500">{m.role}</p>
+                <div className="relative aspect-square w-full overflow-hidden bg-linear-to-br from-violet-100 to-violet-200">
+                  {m.image ? (
+                    <Image
+                      src={m.image}
+                      alt={m.name}
+                      fill
+                      sizes="240px"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-linear-to-br from-violet-500 to-violet-700">
+                      <span className="text-4xl font-bold text-white">
+                        {m.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <div className="p-5 text-center">
+                  <h4 className="font-bold text-gray-900">{m.name}</h4>
+                  <p className="mt-1 text-sm font-medium text-violet-600">{m.role}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -219,25 +199,20 @@ const visionaries = [
     name: "Gopal Maheshwari",
     role: "Director – Technology",
     bio: "Driving innovation and security-first architectures.",
-    image: "/leader.png",
+    image: "/Gopal-Sir.jpeg",
   },
   {
-    name: "Anita Verma",
-    role: "Director – Operations",
+    name: "Munish Paul Kumar",
+    role: "Director",
     bio: "Ensuring scalable and efficient service delivery.",
-    image: "/leader.png",
+    image: "/Munish-sir.jpeg",
   },
-  {
-    name: "Rahul Singh",
-    role: "Head – Security",
-    bio: "Threat intelligence and SOC excellence leader.",
-    image: "/leader.png",
-  },
+
 ];
 
 const team = [
-  { name: "SOC Analyst", role: "Security Operations", image: "/leader.png" },
-  { name: "Cloud Architect", role: "Cloud Security", image: "/leader.png" },
-  { name: "Network Engineer", role: "Infrastructure", image: "/leader.png" },
-  { name: "DevSecOps Engineer", role: "Automation", image: "/leader.png" },
+  { name: "Sanjeev Kumar", role: "Sales Head", image: null },
+  { name: "Vikram Singh Bhau", role: "Head – Engineering", image: "/Vikram-Sir.jpeg" },
+  { name: "Shiv Raj", role: "Lead Solution Architect", image: null },
+  { name: "DevSecOps Engineer", role: "Automation", image: null },
 ];
